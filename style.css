@@ -1,0 +1,187 @@
+:root {
+    --main-bg-color : rgb(255, 255, 255);
+    --board-bg-color : rgb(255, 255, 255);
+    --cell-bg-color : rgb(255, 255, 255);
+
+    --drag-color : pink;
+    --found-color: rgb(198, 255, 255);
+}
+
+body {
+    background-color: var(--main-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Anek Tamil', sans-serif;
+color:rgb(44, 44, 44);
+}
+
+.board {
+    background: var(--board-bg-color);
+    width: 35rem;
+    display: grid;
+    aspect-ratio: 1;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    place-items: center;
+    gap: 1px;
+    padding: 2rem;
+}
+
+.cell {
+    width: 1.5rem;
+    height: 1.5rem;
+    box-shadow: 0 0 0 .25rem var(--cell-bg-color);
+    background: var(--cell-bg-color);
+    cursor: pointer;
+    user-select: none;
+    display: grid;
+    place-content: center;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: 250ms;
+    border-radius: 50%;
+}
+
+.cell:hover{
+    background: burlywood;
+    box-shadow: 0 0 0 .20rem burlywood;
+}
+
+.words-settings {
+    padding: 1rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.words-input {
+    padding: 1rem;
+    min-height: 200px;
+    resize: vertical;
+    border:2px solid rgb(122, 122, 122);
+}
+
+.active {
+    background-color: var(--drag-color);
+    box-shadow: 0 0 0 .25rem var(--drag-color);
+    border-radius: 50%;
+}
+
+.found {
+    background-color: var(--found-color);
+    box-shadow: 0 0 0 .25rem var(--found-color);
+}
+
+.settings {
+    width:15rem;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+
+.word-list {
+    margin-top:60px;
+    position: relative;
+    list-style: none;
+    width:11rem;
+    padding: 0rem 2rem;
+    height:0rem;
+    overflow:hidden;
+    background-color: rgb(255, 255, 255);
+    position:absolute;
+    transition: 500ms;
+}
+
+.word-list-active{
+    height:30rem;
+    transform: scale(1);
+    animation-name: show-word-list;
+    animation-duration: 500ms;
+}
+
+@keyframes show-word-list {
+    0% {
+        transform: scale(0,0);
+    }
+
+    50% {
+        transform: scale(0.1,1);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+}
+
+.word-list-btn, .create {
+border-radius: 2rem ;
+font-size: 0.9rem;
+border: none;
+background-color: rgb(255, 255, 255);
+padding:.8rem 1.25rem .7rem 1.25rem;
+font-weight: 600;
+box-shadow: 0 0 0 2px rgb(44, 44, 44);
+transition: 250ms;
+cursor: pointer;
+letter-spacing: -1px;
+font-variant:small-caps;
+width:8rem;
+}
+
+.word-list-btn:hover,.create:hover {
+box-shadow: 0 0 0 2px rgb(44, 44, 44);
+background-color: rgb(53, 53, 53);
+color: white;
+}
+
+.create{
+margin:10px 0 0 0;
+}
+
+.win {
+    border:1px solid red;
+    position: fixed;
+    font-size: 3rem;
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+    padding:2rem 2rem 1.5rem 2rem;
+    display: none;  
+    user-select: none; 
+    cursor: pointer;
+}
+
+.win-active {
+    display: block;
+   transform: scale(1,1);
+    animation-name: show-win;
+    animation-duration: 750ms;
+    transition: 1s;
+
+}
+
+@keyframes show-win {
+    
+    0% {transform: scale(0,0);}
+    50%{transform: scale(0,1);}
+    100% {  transform: scale(1,1);}
+
+}
+
+.win-move {
+    margin-left:38rem;
+    margin-top:-35rem;
+    font-size: .75rem;
+    padding:1rem;
+    white-space: nowrap;
+    transition: 1s;
+   transform: scale(1,1);
+}
+
+.win:hover {
+    box-shadow: 0 0 0 3px red;
+}
